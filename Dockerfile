@@ -1,7 +1,7 @@
 # node image version
 FROM node:22-alpine
 
-# open folder in docker 
+# open folder in docker
 WORKDIR /auth-app
 
 # Install pnpm globally
@@ -10,6 +10,8 @@ RUN npm install -g pnpm
 # copy package.json file
 COPY package*.json ./
 
+COPY pnpm-lock.yaml ./
+
 # install all packages
 RUN pnpm install
 
@@ -17,7 +19,7 @@ RUN pnpm install
 COPY . .
 
 # port
-EXPOSE 3000
+EXPOSE 4000
 
 # command which will run app
 CMD [ "pnpm", "dev" ]

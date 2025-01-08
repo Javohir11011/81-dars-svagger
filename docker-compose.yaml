@@ -1,0 +1,36 @@
+services:
+  super-app:
+    build: .
+    ports:
+      - '5000:4000'
+    env_file:
+      - .env
+    depends_on:
+      - super-db
+      - mongo-db
+    networks:
+      - super-net
+    # environment:
+    #   - DATABASE_URL=mongodb://mongo-db:27017/swagger
+
+  super-db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=1101
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - '5433:5432'
+    networks:
+      - super-net
+
+  mongo-db:
+    image: mongo:latest
+    ports:
+      - '27018:27017' 
+    networks:
+      - super-net
+
+networks:
+  super-net:
+    driver: bridge
