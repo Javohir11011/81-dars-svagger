@@ -32,7 +32,6 @@ export class UserService {
   }
 
   async login(loginUser: UpdateUserDto) {
-    // return `This action returns all user`;
     const currentUser = await this.userModel.findOne({
       email: loginUser.email,
     });

@@ -13,6 +13,8 @@ async function bootstrap() {
       challenge: true,
     }),
   );
+  console.log('Salom');
+  console.log('Salom');
   const config = new DocumentBuilder()
     .setTitle('Auth example')
     .setDescription('The Auth API description')
@@ -22,6 +24,7 @@ async function bootstrap() {
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, documentFactory);
+  console.log(`server running ${process.env.PORT}`);
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
